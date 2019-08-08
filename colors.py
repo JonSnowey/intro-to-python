@@ -1,8 +1,16 @@
+import random
+import string
+
+def code_generator(size=6,chars = string.ascii_uppercase+string.digits):
+    return ''.join(random.choice(chars)for _ in range(size))
+code_generator()
+
+
 def logging_in():
     password = "cat"
     username ="Melanie"
     email = "Melanie@email.com"
-    code="123"
+    code= code_generator()
     new_pass=""
     updated_pass = new_pass
 
@@ -20,8 +28,9 @@ def logging_in():
         email = input("To reset your password enter your email:")
         if email == "Melanie@email.com":
             print("An email has been sent to your email with a code")
+            print(code_generator())
             code = input("Enter the code:")
-            if code == "123":
+            if code == code:
                 new_pass = input("Enter a new password:")
                 print("Your password has been changed to",new_pass)
                 print("To continue login with your new password")
