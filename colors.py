@@ -28,11 +28,11 @@ def logging_in():
                 updated_pass =input("password:")
                 if updated_pass == new_pass:
                     print("Correct password")
+                    new_pass == password
+        
                 else:
                     print('Incorrect password')
-
-
         else:
             print("Incorrect email of the account")
-
 logging_in()
+        

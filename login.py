@@ -29,7 +29,7 @@ def logging_in():
                 updated_pass =input("password:")
                 if updated_pass == new_pass:
                     print("Correct password")
-                    chicken()
+                    logging_in()
                 else:
                     print('Incorrect password')
                 
