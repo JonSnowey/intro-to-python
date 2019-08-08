@@ -7,7 +7,7 @@ def logging_in():
     updated_pass = new_pass
 
 
-    print('Welcome to Chicken simulator')
+    print('Welcome to Login simulator')
     print("////////////////////")
 
     password = input("////Password:")

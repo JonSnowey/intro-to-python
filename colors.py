@@ -30,15 +30,9 @@ def logging_in():
                     print("Correct password")
                 else:
                     print('Incorrect password')
-                
-                 
+
+
         else:
             print("Incorrect email of the account")
 
-        
-              
-            
-            
-            
 logging_in()
-        
