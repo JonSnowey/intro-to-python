@@ -21,8 +21,8 @@ def over():
     global monster_health
     if monster_health <= 0:
         print('You bested the monster!')
-    elif monster_health <= 0 and char_health <= 0:
-        print('You killed it , but at what cost')
+    elif char_health <= 0:
+        print('The monster defeated you')
 
 
 
@@ -80,6 +80,6 @@ def game():
                 evade()
                 game()
                 
-
+over()
 game()
 over()
