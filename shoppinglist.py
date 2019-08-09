@@ -17,3 +17,10 @@ while 1:
 
     
 print('Your items:',items)
+##ticking off items off the list , it would be better to tick it by number? by its position in the set?
+
+
+tick = input('name of item gotten:')
+if tick in items:
+    items.remove(tick)
+    print('remaining:',items)
