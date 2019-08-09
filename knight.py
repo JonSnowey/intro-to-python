@@ -7,3 +7,7 @@ def knight():
         return random.choice(mood)
 print('This knight is',knight())
 
+def affinity():
+    global mood
+    return random.choice(mood)
+print('This knight is still',affinity())
