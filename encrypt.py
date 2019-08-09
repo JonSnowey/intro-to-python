@@ -1,4 +1,5 @@
 import random
+import sys
 result = ''
 choice = ''
 message = ''
@@ -36,5 +37,7 @@ while choice != 0:
         print(result + '\n\n')
         result = ''
 
-    elif str(choice) != '0':
+    elif str(choice) == '0':
         print('You have entered an invalid input, please try again. \n\n')
+        sys.exit()
+        
