@@ -15,6 +15,17 @@ defence = ''
 
 
 
+
+def over():
+    global char_health
+    global monster_health
+    if monster_health <= 0:
+        print('You bested the monster!')
+    elif monster_health <= 0 and char_health <= 0:
+        print('You killed it , but at what cost')
+
+
+
 def battle():
 
 
@@ -31,7 +42,7 @@ battle()
 def monster_attk():
     global char_health
     global monster_health
-    monster = random.randint(0,100)
+    monster = random.randint(0,200)
     print('The monster hits you for',monster,'points')
     char_health -= monster
 
@@ -39,7 +50,7 @@ def monster_attk():
 
 def char_attk():
     global char_health
-    char = random.randint(0,200)
+    char = random.randint(0,150)
     print('You hit the monster for',char,'points')
     global monster_health
     monster_health -= char
@@ -59,7 +70,7 @@ def game():
     choose = input('1:attack 2:evade:')
     print("your health:",char_health,"/500")
     global monster_health
-    while monster_health > 0:
+    while monster_health > 0 and char_health > 0:
             if choose == "1" or choose =="attack":
                 char_attk()
                 monster_attk()
@@ -69,4 +80,6 @@ def game():
                 evade()
                 game()
                 
+
 game()
+over()
