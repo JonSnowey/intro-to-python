@@ -1,0 +1,148 @@
+tables = {
+    1: {
+        'name': 'Jiho',
+        'vip_status': False,
+        'order': {
+            'drinks': 'Orange Juice, Apple Juice',
+            'food_items': 'Pancakes',
+            'total': [534.50, 20.0, 5]
+        },
+        'reservations': []
+    },
+    2: {},
+    3: {},
+    4: {},
+    5: {},
+    6: {},
+    7: {},
+}
+
+def assign_table(table_number, name, vip_status=False): 
+  tables[table_number]['name'] = name
+  tables[table_number]['vip_status'] = vip_status
+  tables[table_number]['order'] = {}
+
+def assign_food_items(table_number, **order_items):
+  food = order_items.get('food')
+  drinks = order_items.get('drinks')
+  tables[table_number]['order']['food_items'] = food
+  tables[table_number]['order']['drinks'] = drinks
+
+def calculate_price_per_person(total, tip, split):
+    total_tip = total * (tip/100)
+    split_price = (total + total_tip) / split
+    print(split_price)
+
+#print the table details
+def print_table(table_number):
+    if table_number in tables:
+        table_data = tables[table_number]
+        if table_data:
+            print(f"Table {table_number} details:")
+            print(f"Name: {table_data.get('name', 'N/A')}")
+            print(f"VIP Status: {table_data.get('vip_status', False)}")
+            order = table_data.get('order', {})
+            print("Order:")
+            print(f"   Drinks: {order.get('drinks', 'N/A')}")
+            print(f"   Food Items: {order.get('food_items', 'N/A')}")
+            print(f"   Total: {order.get('total', 'N/A')}")
+        else:
+            print(f"Table {table_number} is empty.")
+    else:
+        print(f"Table {table_number} does not exist in the dictionary.")
+
+# Test the function for table one (table number 1)
+print_table(1)
+
+
+#remove a table's guests when they leave the restaurant
+
+def clear_table(table_number):
+    if table_number in tables:
+        tables[table_number] = {}
+        print(f"Table {table_number} has been cleared.")
+    else:
+        print(f"Table {table_number} does not exist in the dictionary.")
+
+# Test the function
+clear_table(1)
+print_table(1)
+print()
+#add and remove order items for both food and drinks if there is ever a mistake.
+
+def add_order_item(table_number, category, item):
+    if table_number in tables:
+        table_data = tables[table_number]
+        if 'order' not in table_data:
+            table_data['order'] = {'drinks': '', 'food_items': '', 'total': []}
+
+        if category in table_data['order']:
+            if table_data['order'][category]:
+                table_data['order'][category] += f', {item}'
+            else:
+                table_data['order'][category] = item
+            print(f"Added '{item}' to {category} for Table {table_number}.")
+        else:
+            print(f"Invalid category '{category}' for Table {table_number}.")
+    else:
+        print(f"Table {table_number} does not exist in the dictionary.")
+
+def remove_order_item(table_number, category, item):
+    if table_number in tables:
+        table_data = tables[table_number]
+        if 'order' in table_data and category in table_data['order']:
+            items_list = [x.strip() for x in table_data['order'][category].split(',')]
+            if item in items_list:
+                items_list.remove(item)
+                table_data['order'][category] = ', '.join(items_list)
+                print(f"Removed '{item}' from {category} for Table {table_number}.")
+            else:
+                print(f"Item '{item}' not found in {category} for Table {table_number}.")
+        else:
+            print(f"No {category} order found for Table {table_number}.")
+    else:
+        print(f"Table {table_number} does not exist in the dictionary.")
+
+# Test the functions
+add_order_item(1, 'drinks', 'Coca-Cola')
+add_order_item(1, 'drinks', 'Lemonade')
+add_order_item(1, 'food_items', 'Waffles')
+add_order_item(1, 'food_items', 'Eggs')
+
+remove_order_item(1, 'drinks', 'Lemonade')
+remove_order_item(1, 'food_items', 'Pancakes')
+
+print_table(1)
+
+#The ability to queue reservations for later times for specific tables.
+def add_reservation(table_number, reservation_time, customer_name):
+    if table_number in tables:
+        if 'reservations' not in tables[table_number]:
+            tables[table_number]['reservations'] = []
+            
+        reservation = {
+            'time': reservation_time,
+            'customer_name': customer_name
+        }
+        tables[table_number]['reservations'].append(reservation)
+        print(f"Reservation added for Table {table_number} at {reservation_time} for {customer_name}.")
+    else:
+        print(f"Table {table_number} does not exist in the dictionary.")
+
+def view_reservations(table_number):
+    if table_number in tables:
+        reservations = tables[table_number].get('reservations', [])
+        if reservations:
+            print(f"Reservations for Table {table_number}:")
+            for reservation in reservations:
+                print(f"  Time: {reservation['time']}, Customer Name: {reservation['customer_name']}")
+        else:
+            print(f"No reservations found for Table {table_number}.")
+    else:
+        print(f"Table {table_number} does not exist in the dictionary.")
+
+# Test the functions
+add_reservation(1, '2023-08-03 18:30', 'John')
+add_reservation(1, '2023-08-03 19:00', 'Alice')
+
+view_reservations(1)
