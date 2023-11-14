@@ -1,0 +1,114 @@
+#You and your pen pal, Vishal, have been exchanging letters for some time now. Recently, he has become interested in cryptography and the two of you have started sending encoded messages within your letters.
+
+#Caesar Cipher
+
+message_one = "xuo jxuhu! jxyi yi qd unqcfbu ev q squiqh syfxuh. muhu oek qrbu je tusetu yj? y xefu ie! iudt cu q cuiiqwu rqsa myjx jxu iqcu evviuj!"
+
+offset = 10
+
+def caesar_cipher_decrypt(message, offset):
+    decrypted_message = ""
+    for char in message:
+        if char.isalpha():
+            # Determine if the character is uppercase or lowercase
+            is_upper = char.isupper()
+            char_offset = ord('A') if is_upper else ord('a')
+
+            # Decrypt the character using the Caesar Cipher
+            decrypted_char = chr((ord(char) - char_offset + offset) % 26 + char_offset)
+
+            # Add the decrypted character to the result
+            decrypted_message += decrypted_char
+        else:
+            # If the character is not a letter, leave it unchanged
+            decrypted_message += char
+
+    return decrypted_message
+
+# Decrypt the message with the correct offset (10)
+decrypted_message = caesar_cipher_decrypt(message_one, offset)
+
+# Print the correct result
+print(decrypted_message)
+
+message_to_encrypt = "That was fun! Try this one - I just got a new fish"
+
+def caesar_cipher_encrypt(message, offset):
+    encrypted_message = ""
+    for char in message:
+        if char.isalpha():
+            # Determine if the character is uppercase or lowercase
+            is_upper = char.isupper()
+            char_offset = ord('A') if is_upper else ord('a')
+
+            # Encrypt the character using the Caesar Cipher
+            encrypted_char = chr((ord(char) - char_offset - offset) % 26 + char_offset)
+
+            # Add the encrypted character to the result
+            encrypted_message += encrypted_char
+        else:
+            # If the character is not a letter, leave it unchanged
+            encrypted_message += char
+
+    return encrypted_message
+
+# Encrypt the message_to_encrypt with the same offset (10)
+encrypted_message = caesar_cipher_encrypt(message_to_encrypt, offset)
+
+# Print the encrypted result
+print(encrypted_message)
+
+decrypted_message_2 = caesar_cipher_decrypt(encrypted_message, offset)
+print(decrypted_message_2)
+
+#the offset for the second message is fourteen.
+message3 = "jxu evviuj veh jxu iusedt cuiiqwu yi vekhjuud."
+#performing multiple caesar ciphers to code your messages is even more secure!
+message4 = "bqdradyuzs ygxfubxq omqemd oubtqde fa oapq kagd yqeemsqe ue qhqz yadq eqogdq!"
+
+# Decrypt the message with the correct offset (10)
+decrypted_message_3 = caesar_cipher_decrypt(message3, offset)
+
+# Print the correct result
+print(decrypted_message_3)
+
+new_offset = 14
+
+# Decrypt the message with the correct offset (10)
+decrypted_message_4 = caesar_cipher_decrypt(message4, new_offset)
+
+# Print the correct result
+print(decrypted_message_4)
+
+
+#Brute force the encoded message
+
+range_of_possible_offsets = range(1, 50)
+
+brute_force_message = "vhfinmxkl atox kxgwxkxw tee hy maxlx hew vbiaxkl hulhexmx. px'ee atox mh kxteer lmxi ni hnk ztfx by px ptgm mh dxxi hnk fxlltzxl ltyx."
+
+def caesar_cipher_decrypt(message, offset):
+    decrypted_message = ""
+    for char in message:
+        if char.isalpha():
+            # Determine if the character is uppercase or lowercase
+            is_upper = char.isupper()
+            char_offset = ord('A') if is_upper else ord('a')
+
+            # Decrypt the character using the Caesar Cipher
+            decrypted_char = chr((ord(char) - char_offset + offset) % 26 + char_offset)
+
+            # Add the decrypted character to the result
+            decrypted_message += decrypted_char
+        else:
+            # If the character is not a letter, leave it unchanged
+            decrypted_message += char
+
+    return decrypted_message
+
+# Iterate through the range of possible offsets and print the decrypted messages
+for offset in range_of_possible_offsets:
+    decrypted_message = caesar_cipher_decrypt(brute_force_message, offset)
+    print(f"Offset {offset}: {decrypted_message}")
+
+#after printing : Offset 33: computers have rendered all of these old ciphers obsolete. we'll have to really step up our game if we want to keep our messages safe.
